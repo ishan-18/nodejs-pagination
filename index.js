@@ -24,7 +24,6 @@ async function paginateWithOffset(Model, filter = {}, options = {}) {
     if (total === undefined) {
         total = await Model.countDocuments(filter);
         putDataInCacheWithTTL('total', cacheKey, total, ttl);
-        console.log("Cache Miss");
     }
 
     const query = Model.find(filter);
