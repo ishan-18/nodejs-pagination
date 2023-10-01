@@ -1,5 +1,5 @@
 {
-  "name": "pagination",
+  "name": "nodejs-pagination",
   "version": "1.0.0",
   "description": "A pagination utility for Node.js and Mongoose",
   "main": "index.js",

@@ -1,4 +1,4 @@
-# node-pagination
+# nodejs-pagination
 
 This repository contains two pagination functions for Mongoose models: `paginateWithOffset` and `paginateWithCursor`. These functions allow you to easily implement offset-based and cursor-based pagination in your Node.js and Mongoose projects.
 
@@ -11,20 +11,20 @@ This repository contains two pagination functions for Mongoose models: `paginate
 
 ## Installation
 
-To use these pagination functions, you can install the `node-pagination` package as a dependency. Additionally, make sure you have `mongoose` and `npm-cache-it` installed if you haven't already:
+To use these pagination functions, you can install the `nodejs-pagination` package as a dependency. Additionally, make sure you have `mongoose` and `npm-cache-it` installed if you haven't already:
 
 - [mongoose](https://www.npmjs.com/package/mongoose): An Object Data Modeling (ODM) library for MongoDB.
 - [npm-cache-it](https://www.npmjs.com/package/npm-cache-it): A caching utility for caching data in Node.js applications.
 
 ```bash
-npm install node-pagination mongoose npm-cache-it
+npm install nodejs-pagination mongoose npm-cache-it
 ```
 
 ## Usage
 ### Offset Pagination (`paginateWithOffset`)
 Offset pagination is a common pagination method where you specify the page number and the number of results per page. This function provides options to sort the results by a specific field and in a specific direction.
 ```javascript
-const { paginateWithOffset } = require('node-pagination');
+const { paginateWithOffset } = require('nodejs-pagination');
 app.get('/offset-paginate', async (req, res) => {
     try {
         const { page = 1, perPage = 2, sortField = 'age', sortDirection = 1 } = req.query;
@@ -58,7 +58,7 @@ app.get('/offset-paginate', async (req, res) => {
 ### Cursor Pagination (`paginateWithCursor`)
 Cursor pagination is a more efficient method for large datasets. It uses a cursor (usually the ID of the last item from the previous page) to fetch the next set of results.
 ```javascript
-const { paginateWithCursor } = require('node-pagination');
+const { paginateWithCursor } = require('nodejs-pagination');
 app.get('/cursor-paginate', async (req, res) => {
     try {
         const { cursor, limit } = req.query;
@@ -83,7 +83,7 @@ app.get('/cursor-paginate', async (req, res) => {
 Both pagination functions support caching of the total number of records to improve performance. The cache has a default time-to-live (TTL) of 60 seconds, which you can adjust according to your needs.
 
 ## Contributing
-Contributions to `node-pagination` are welcome! If you'd like to contribute to this project, please follow these steps:
+Contributions to `nodejs-pagination` are welcome! If you'd like to contribute to this project, please follow these steps:
 1. Fork the repository.
 2. Create a new branch for your feature or bug fix: `git checkout -b feature/your-feature-name.`
 3. Commit your changes: `git commit -m "Add your feature or fix".`
