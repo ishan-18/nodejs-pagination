@@ -24,6 +24,17 @@ npm install nodejs-pagination mongoose npm-cache-it
 ### Offset Pagination (`paginateWithOffset`)
 Offset pagination is a common pagination method where you specify the page number and the number of results per page. This function provides options to sort the results by a specific field and in a specific direction.
 ```javascript
+/**
+ * Offset pagination function for Mongoose models.
+ * @param {mongoose.Model} Model - The Mongoose model to paginate.
+ * @param {Object} [filter] - Optional filter conditions.
+ * @param {Object} [options] - Pagination options.
+ * @param {number} [options.page=1] - The current page number (default is 1).
+ * @param {number} [options.perPage=10] - Number of results per page (default is 10).
+ * @param {string} [options.sortField] - The field to sort results by.
+ * @param {number} [options.sortDirection=1] - Sort direction (1 for ascending, -1 for descending).
+ * @returns {Promise<Object>} - An object containing paginated results and metadata.
+ */
 const { paginateWithOffset } = require('nodejs-pagination');
 app.get('/offset-paginate', async (req, res) => {
     try {
@@ -58,6 +69,14 @@ app.get('/offset-paginate', async (req, res) => {
 ### Cursor Pagination (`paginateWithCursor`)
 Cursor pagination is a more efficient method for large datasets. It uses a cursor (usually the ID of the last item from the previous page) to fetch the next set of results.
 ```javascript
+/**
+ * Cursor-based pagination function for Mongoose models.
+ * @param {mongoose.Model} model - The Mongoose model to paginate.
+ * @param {Object} query - Optional query conditions.
+ * @param {string} cursor - The cursor representing the last record in the previous page.
+ * @param {number} pageSize - Number of results per page.
+ * @returns {Promise<Object>} - An object containing paginated results and metadata.
+ */
 const { paginateWithCursor } = require('nodejs-pagination');
 app.get('/cursor-paginate', async (req, res) => {
     try {

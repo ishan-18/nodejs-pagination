@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { paginateWithOffset, paginateWithCursor } = require('../index');
+const { paginateWithOffset, paginateWithCursor } = require('nodejs-pagination');
 
 const app = express();
 const port = 3000;
