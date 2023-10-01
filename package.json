@@ -1,0 +1,22 @@
+{
+  "name": "pagination",
+  "version": "1.0.0",
+  "description": "A pagination utility for Node.js and Mongoose",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon"
+  },
+  "keywords": [
+    "pagination",
+    "node.js",
+    "mongoose",
+    "offset",
+    "cursor"
+  ],
+  "author": "Ishan Gawali",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^7.5.3",
+    "npm-cache-it": "^1.0.6"
+  }
+}
