@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { paginateWithOffset, paginateWithCursor } = require('nodejs-pagination');
+const { paginateWithOffset, paginateWithCursor } = require('../index');
 
 const app = express();
 const port = 3000;
@@ -32,7 +32,7 @@ const insertDummyData = async () => {
 
 app.get('/offset-paginate', async (req, res) => {
     try {
-        const { page = 1, perPage = 2, sortField = 'age', sortDirection = 1 } = req.query;
+        const { page = 1, perPage = 2, sortField = 'age', sortDirection = 1, allowCache = false } = req.query;
 
         const parsedPage = parseInt(page) || 1;
         const parsedPerPage = parseInt(perPage) || 2;
@@ -43,6 +43,7 @@ app.get('/offset-paginate', async (req, res) => {
             perPage: parsedPerPage,
             sortField,
             sortDirection: parsedSortDirection,
+            allowCache: true
         };
 
         const result = await paginateWithOffset(Model, {}, paginationOptions);
@@ -60,7 +61,7 @@ app.get('/cursor-paginate', async (req, res) => {
         const pageSize = parseInt(limit) || 5;
 
         const query = {};
-        const result = await paginateWithCursor(Model, query, cursor, pageSize);
+        const result = await paginateWithCursor(Model, query, cursor, pageSize, allowCache=false);
         res.json(result);
     } catch (error) {
         console.error(error);
@@ -71,8 +72,6 @@ app.get('/cursor-paginate', async (req, res) => {
 mongoose.connect('mongodb://localhost:27017/mydb')
     .then(() => {
         console.log('Connected to MongoDB');
-
-        insertDummyData();
 
         app.listen(port, () => {
             console.log(`Server is running on port ${port}`);

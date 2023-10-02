@@ -100,6 +100,12 @@ app.get('/cursor-paginate', async (req, res) => {
 
 ## Caching
 Both pagination functions support caching of the total number of records to improve performance. The cache has a default time-to-live (TTL) of 60 seconds, which you can adjust according to your needs.
+The caching feature is optional and can be controlled using the `allowCache` flag. Here's how it works with the allowCache flag:
+1. When you call these pagination functions, you can pass the `allowCache` parameter with a value of `true` (which is the default) or `false` to indicate whether you want to enable or disable caching, respectively.
+2. If `allowCache` is set to `true`, the functions will attempt to use caching to improve performance as described in the previous explanations.
+3. If `allowCache` is set to `false`, the functions will skip the caching mechanism entirely, and each pagination request will query the database for fresh data without caching any results or counts.
+
+This flexibility allows you to choose whether or not to use caching based on your specific performance and caching requirements.
 
 ## Contributing
 Contributions to `nodejs-pagination` are welcome! If you'd like to contribute to this project, please follow these steps:
