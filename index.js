@@ -118,7 +118,6 @@ async function paginateWithCursor(Model, query, cursor, pageSize = defaultPageSi
         if (allowCache) {
             const cachePrefix = 'pagination';
             const cacheKey = getCompoundKey(cachePrefix, JSON.stringify({ query, cursor, pageSize }));
-            const ttl = 60;
 
             const cachedResults = getCachedData(cachePrefix, cacheKey);
 
@@ -148,7 +147,7 @@ async function paginateWithCursor(Model, query, cursor, pageSize = defaultPageSi
                 next: nextPageCursor ? nextPageCursor.toString() : null,
                 previous: previousPageCursor ? previousPageCursor.toString() : null,
                 hasNext,
-            }, ttl);
+            }, 60);
         }
 
         return {
